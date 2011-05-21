@@ -10,8 +10,11 @@ class Hazzard
         Hazzard();
         ~Hazzard();
 
+        virtual void move() = 0;
+
     private:
-        Sprite* hazzardModel;
+        Sprite* hazzardModel_;
+        std::string name_;
 };
 
 #endif // HAZZARD_H

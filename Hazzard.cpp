@@ -1,11 +1,10 @@
 #include "Hazzard.h"
 
-Hazzard::Hazzard()
+Hazzard::Hazzard() : hazzardModel_(0)
 {
-    hazzardModel = 0;
 }
 
 Hazzard::~Hazzard()
 {
-    delete hazzardModel;
+    delete hazzardModel_;
 }
