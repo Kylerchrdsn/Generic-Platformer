@@ -9,3 +9,8 @@ Background::~Background()
 {
     delete backgroundImage;
 }
+
+void Background::show(SDL_Surface* screen)
+{
+    backgroundImage->show(screen);
+}

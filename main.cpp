@@ -30,10 +30,6 @@ int main(int argc, char* args[])
             case MENU:
                 controller.doMenu();
             break;
-
-            case EXIT:
-                controller.doExit();
-            break;
         };
     }
 

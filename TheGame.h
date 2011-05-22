@@ -18,17 +18,27 @@ class TheGame
         inline int getGameState();
         void setGameState(int gameState);
 
-        void doIntro();
+        bool doIntro();
         void doSelectSave();
         void doLevelI();
         void doMenu();
         void doExit();
+
+        bool render();
 
     private:
         std::vector<Level*> levels_;
         std::vector<Toon*> toons_;
 
         int gameState_;
+
+        SDL_Event gEvent;
+
+        SDL_Surface* screen;
+
+        Background* introBG;
+
+        enum gameStates {INTRO, SELECT_SAVE_FILE, LEVEL_I, MENU, EXIT};
 };
 
 //*****************************************************

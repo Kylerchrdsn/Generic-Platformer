@@ -10,6 +10,8 @@ class Background
         Background();
         ~Background();
 
+        void show(SDL_Surface*);
+
     private:
         Sprite* backgroundImage;
 };
