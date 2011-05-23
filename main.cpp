@@ -16,7 +16,10 @@ int main(int argc, char* args[])
         switch(controller.getGameState())
         {
             case INTRO:
-                controller.doIntro();
+                if(!controller.doIntro())
+                {
+                    return 1;
+                }
             break;
 
             case SELECT_SAVE_FILE:

@@ -8,9 +8,11 @@ class Background
 {
     public:
         Background();
+        Background(const std::string& fileName);
         ~Background();
 
         void show(SDL_Surface*);
+        void load(const std::string& fileName);
 
     private:
         Sprite* backgroundImage;
