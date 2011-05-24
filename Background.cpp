@@ -1,4 +1,5 @@
 #include "Background.h"
+#include "Sprite.h"
 
 Background::Background() : backgroundImage(0)
 {

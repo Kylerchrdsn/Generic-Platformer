@@ -34,7 +34,10 @@ int main(int argc, char* args[])
                 controller.doMenu();
             break;
         };
+
     }
+
+    controller.doExit();
 
     return 0;
 }

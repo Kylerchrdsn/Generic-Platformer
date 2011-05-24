@@ -1,8 +1,10 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "Sprite.h"
+#include <string>
 
+class Sprite;
+class SDL_Surface;
 
 class Background
 {
@@ -11,7 +13,7 @@ class Background
         Background(const std::string& fileName);
         ~Background();
 
-        void show(SDL_Surface*);
+        void show(SDL_Surface* screen);
         void load(const std::string& fileName);
 
     private:

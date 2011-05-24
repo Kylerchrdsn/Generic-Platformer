@@ -1,6 +1,6 @@
 #include "theGame.h"
 
-TheGame::TheGame()
+TheGame::TheGame() : screen(0)
 {
     setGameState(0);
     introBG = new Background("poop.png");
@@ -9,7 +9,7 @@ TheGame::TheGame()
 TheGame::~TheGame()
 {
     delete introBG;
-    delete screen;
+    //delete screen;
 }
 
 //***************************************************
@@ -76,7 +76,7 @@ void TheGame::doMenu()
 
 void TheGame::doExit()
 {
-
+    SDL_Quit();
 }
 
 bool TheGame::render()
