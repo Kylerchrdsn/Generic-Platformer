@@ -2,9 +2,11 @@
 #define THEGAME_H
 
 #include "SDL.h"
+#include "SDL_image.h"
 #include <vector>
 #include "Level.h"
 #include "Toon.h"
+#include "Sprite.h"
 
 
 class TheGame
@@ -20,7 +22,7 @@ class TheGame
 
         bool doIntro();
         void doSelectSave();
-        void doLevelI();
+        bool doLevelI();
         void doMenu();
         void doExit();
 
@@ -30,13 +32,15 @@ class TheGame
         std::vector<Level*> levels_;
         std::vector<Toon*> toons_;
 
-        int gameState_;
+        int gameState_,
+            screenHeight_,
+            screenWidth_;
 
         SDL_Event gEvent;
 
         SDL_Surface* screen;
 
-        Background* introBG;
+        Sprite* introBG;
 
         enum gameStates {INTRO, SELECT_SAVE_FILE, LEVEL_I, MENU, EXIT};
 };

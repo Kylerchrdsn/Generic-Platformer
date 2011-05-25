@@ -9,7 +9,11 @@ int main(int argc, char* args[])
     enum gameStates {INTRO, SELECT_SAVE_FILE, LEVEL_I, MENU, EXIT};
 
     controller.setGameState(INTRO);
-    controller.initialize();
+
+    if(!controller.initialize())
+    {
+        return 1;
+    }
 
     while(controller.getGameState() != EXIT)
     {
@@ -27,7 +31,10 @@ int main(int argc, char* args[])
             break;
 
             case LEVEL_I:
-                controller.doLevelI();
+                if(!controller.doLevelI())
+                {
+                    return 1;
+                }
             break;
 
             case MENU:

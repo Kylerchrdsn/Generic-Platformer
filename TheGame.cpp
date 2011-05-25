@@ -1,15 +1,17 @@
-#include "theGame.h"
+#include "TheGame.h"
+#include "Timer.h"
 
 TheGame::TheGame() : screen(0)
 {
     setGameState(0);
-    introBG = new Background("poop.png");
+    screenHeight_ = 500;
+    screenWidth_ = 800;
+    introBG = new Sprite();
 }
 
 TheGame::~TheGame()
 {
     delete introBG;
-    //delete screen;
 }
 
 //***************************************************
@@ -17,11 +19,17 @@ bool TheGame::initialize()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
 
-    screen = SDL_SetVideoMode(800, 600, 32, SDL_SWSURFACE);
+    screen = SDL_SetVideoMode(screenWidth_, screenHeight_, 32, SDL_SWSURFACE);
 
-    SDL_WM_SetCaption("POOP", "POOP");
+    SDL_WM_SetCaption("My Game", "My Game");
 
-    introBG->load("poop.png");
+    introBG->load("images/level_1.png");
+    introBG->setYPos(-(877 - screenHeight_));
+
+    if(screen == 0)
+    {
+        return 0;
+    }
 
     return 1;
 }
@@ -37,6 +45,73 @@ void TheGame::setGameState(int gameState)
 
 bool TheGame::doIntro()
 {
+    Timer fps;
+
+    int frame = 200;
+    bool doingIntro = 1,
+        intro = 1;
+
+    fps.start();
+
+    while(intro)
+    {
+        while(SDL_PollEvent(&gEvent))
+        {
+            if(gEvent.type == SDL_QUIT)
+            {
+                intro = 0;
+                setGameState(EXIT);
+            }
+            else if(!doingIntro)
+            {
+                if(gEvent.type == SDL_KEYDOWN)
+                {
+                    intro = 0;
+                    setGameState(EXIT);
+                }
+            }
+        }
+
+        if(doingIntro)
+        {
+            introBG->setXPos(introBG->getXPos() - 2);
+        }
+
+        if(introBG->getXPos() <= -(introBG->w() - screenWidth_))
+        {
+            //introBG->setXPos(0);
+            doingIntro = 0;
+        }
+
+        if( fps.get_ticks() < 1000 / frame )
+        {
+            SDL_Delay( ( 1000 / frame ) - fps.get_ticks() );
+        }
+
+        introBG->show(screen);
+
+        if(!render())
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+void TheGame::doSelectSave()
+{
+
+}
+
+bool TheGame::doLevelI()
+{
+    Timer fps;
+
+    int frame = 1;
+
+    fps.start();
+
     while(SDL_PollEvent(&gEvent))
     {
         if(gEvent.type == SDL_QUIT)
@@ -49,6 +124,18 @@ bool TheGame::doIntro()
         }
     }
 
+    introBG->setXPos(introBG->getXPos() - 2);
+
+    if(introBG->getXPos() <= -(introBG->w() - screenWidth_))
+    {
+        introBG->setXPos(0);
+    }
+
+    if( fps.get_ticks() < 1000 / frame )
+    {
+        SDL_Delay( ( 1000 / frame ) - fps.get_ticks() );
+    }
+
     introBG->show(screen);
 
     if(!render())
@@ -57,16 +144,6 @@ bool TheGame::doIntro()
     }
 
     return 1;
-}
-
-void TheGame::doSelectSave()
-{
-
-}
-
-void TheGame::doLevelI()
-{
-
 }
 
 void TheGame::doMenu()

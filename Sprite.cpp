@@ -48,21 +48,13 @@ Sprite::~Sprite()
 //*****************************************************
 void Sprite::setXPos(int xPos)
 {
-	//x must be greater than -1 and less than 800
-	if(xPos > -1 && xPos < 800)
-	{
-		xPos_ = xPos;
-	}
+    xPos_ = xPos;
 }
 
 //*****************************************************
 void Sprite::setYPos(int yPos)
 {
-	//y must be greater than -1 and less than 600
-	if(yPos > -1 && yPos < 600)
-	{
-		yPos_ = yPos;
-	}
+    yPos_ = yPos;
 }
 
 //*****************************************************

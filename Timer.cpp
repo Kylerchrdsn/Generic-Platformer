@@ -19,7 +19,9 @@ void Timer::start()
 //*******************************************
 void Timer::stop()
 {
-
+    started_ = 0;
+    paused_ = 0;
+    startTicks_ = 0;
 }
 
 //*******************************************
@@ -36,7 +38,19 @@ void Timer::unpause()
 
 int Timer::get_ticks()
 {
-    return 1;
+    if(started_ == 1)
+    {
+        if(paused_ == 1)
+        {
+            return pausedTicks_;
+        }
+        else
+        {
+            return SDL_GetTicks() - startTicks_;
+        }
+    }
+
+    return 0;
 }
 
 

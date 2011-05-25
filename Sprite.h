@@ -30,6 +30,9 @@ class Sprite
         bool load(const std::string& filename, int const r, int const g, int const b);
         void show(SDL_Surface* const destination) const;
 
+        inline int w();
+        inline int h();
+
     private:
         // image surface
         SDL_Surface* image;
@@ -64,6 +67,16 @@ SDL_Surface* Sprite::getSurface() const
 void Sprite::setSurfaceNoFree(SDL_Surface* const surface)
 {
 	image = surface;
+}
+
+int Sprite::w()
+{
+    return image->w;
+}
+
+int Sprite::h()
+{
+    return image->h;
 }
 
 #endif // SPRITE_H
