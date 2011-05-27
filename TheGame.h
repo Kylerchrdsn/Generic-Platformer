@@ -25,6 +25,7 @@ class TheGame
         bool doLevelI();
         void doMenu();
         void doExit();
+        void buildLevelI();
 
         bool render();
 

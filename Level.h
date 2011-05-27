@@ -11,16 +11,22 @@ class Level
 {
     public:
         Level(const int screenHeight = 0, const int screenWidth = 0, const std::string& name = "Blank");
+        Level(const std::string& fileName, const int screenHeight = 0, const int screenWidth = 0, const std::string& name = "Blank");
         ~Level();
 
         inline void setName(const std::string& name);
         inline std::string getName() const;
         inline int getLevelHeight() const;
         inline int getLevelWidth() const;
+        inline int getXPos();
+        inline int getYPos();
 
         void addEnemy(int type, int number);
         void setLevelHeight(int height);
         void setLevelWidth(int width);
+        void setXPos(const int x);
+        void setYPos(const int y);
+        void show(SDL_Surface* screen);
 
     private:
         std::vector<Toon*> toons_;
@@ -58,5 +64,16 @@ int Level::getLevelWidth() const
 {
     return LEVEL_WIDTH;
 }
+
+int Level::getXPos()
+{
+    return BG->getXPos();
+}
+
+int Level::getYPos()
+{
+    return BG->getYPos();
+}
+
 
 #endif // LEVEL_H

@@ -23,8 +23,9 @@ bool TheGame::initialize()
 
     SDL_WM_SetCaption("My Game", "My Game");
 
-    introBG->load("images/level_1.png");
-    introBG->setYPos(-(877 - screenHeight_));
+    introBG->load("images/Final/Intro.png");
+    introBG->setYPos(-(introBG->h() - screenHeight_));
+    introBG->setXPos(5);
 
     if(screen == 0)
     {
@@ -67,19 +68,20 @@ bool TheGame::doIntro()
                 if(gEvent.type == SDL_KEYDOWN)
                 {
                     intro = 0;
-                    setGameState(EXIT);
+                    buildLevelI();
+                    setGameState(LEVEL_I);
                 }
             }
         }
 
         if(doingIntro)
         {
-            introBG->setXPos(introBG->getXPos() - 2);
+            introBG->setYPos(introBG->getYPos() + 2);
         }
 
-        if(introBG->getXPos() <= -(introBG->w() - screenWidth_))
+        if(introBG->getYPos() >= 0)
         {
-            //introBG->setXPos(0);
+            introBG->setYPos(0);
             doingIntro = 0;
         }
 
@@ -108,7 +110,7 @@ bool TheGame::doLevelI()
 {
     Timer fps;
 
-    int frame = 1;
+    int frame = 100;
 
     fps.start();
 
@@ -124,11 +126,11 @@ bool TheGame::doLevelI()
         }
     }
 
-    introBG->setXPos(introBG->getXPos() - 2);
+    levels_[0]->setXPos(levels_[0]->getXPos() - 2);
 
-    if(introBG->getXPos() <= -(introBG->w() - screenWidth_))
+    if(levels_[0]->getXPos() <= -(levels_[0]->getLevelWidth() - screenWidth_))
     {
-        introBG->setXPos(0);
+        levels_[0]->setXPos(0);
     }
 
     if( fps.get_ticks() < 1000 / frame )
@@ -136,7 +138,7 @@ bool TheGame::doLevelI()
         SDL_Delay( ( 1000 / frame ) - fps.get_ticks() );
     }
 
-    introBG->show(screen);
+    levels_[0]->show(screen);
 
     if(!render())
     {
@@ -164,4 +166,12 @@ bool TheGame::render()
     }
 
     return 1;
+}
+
+
+void TheGame::buildLevelI()
+{
+    Level* levelI = new Level("images/Final/level_1.png", screenHeight_, screenWidth_, "Level I");
+    levels_.push_back(levelI);
+
 }
