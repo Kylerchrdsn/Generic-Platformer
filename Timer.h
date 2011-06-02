@@ -4,13 +4,6 @@
 
 class Timer
 {
-    private:
-        int startTicks_,
-            pausedTicks_;
-
-        bool paused_,
-            started_;
-
     public:
         Timer();
 
@@ -23,6 +16,14 @@ class Timer
 
         bool is_started();
         bool is_paused();
+
+    private:
+        int startTicks_,
+            pausedTicks_;
+
+        bool paused_,
+            started_;
+
 };
 
 #endif // TIMER_H

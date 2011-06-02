@@ -5,8 +5,8 @@ Level::Level(const int screenHeight, const int screenWidth, const std::string& n
     BG = new Sprite();
     setLevelHeight(0);
     setLevelWidth(0);
-    camera.w = screenWidth;
-    camera.h = screenHeight;
+    camera_.w = screenWidth;
+    camera_.h = screenHeight;
 
     setName(name);
 }
@@ -17,8 +17,8 @@ Level::Level(const std::string& fileName, const int screenHeight, const int scre
     BG = new Sprite(0, 0, fileName);
     setLevelHeight(BG->h());
     setLevelWidth(BG->w());
-    camera.w = screenWidth;
-    camera.h = screenHeight;
+    camera_.w = screenWidth;
+    camera_.h = screenHeight;
 
     setName(name);
 }
@@ -33,6 +33,12 @@ Level::~Level()
 void Level::addEnemy(int type, int number)
 {
 
+}
+
+//**********************************************************
+void Level::addPlat(Platform* plat)
+{
+    path_.push_back(plat);
 }
 
 //**********************************************************

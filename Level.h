@@ -4,6 +4,7 @@
 #include "Toon.h"
 #include "Hazzard.h"
 #include "Sprite.h"
+#include "Platform.h"
 #include <vector>
 #include <string>
 
@@ -22,6 +23,7 @@ class Level
         inline int getYPos();
 
         void addEnemy(int type, int number);
+        void addPlat(Platform* plat);
         void setLevelHeight(int height);
         void setLevelWidth(int width);
         void setXPos(const int x);
@@ -31,12 +33,13 @@ class Level
     private:
         std::vector<Toon*> toons_;
         std::vector<Hazzard*> lookout_;
+        std::vector<Platform*> path_;
         Sprite* BG;
 
         int LEVEL_HEIGHT,
             LEVEL_WIDTH;
 
-        SDL_Rect camera;
+        SDL_Rect camera_;
 
         std::string name_;
 };

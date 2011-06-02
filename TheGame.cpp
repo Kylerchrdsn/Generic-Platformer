@@ -171,7 +171,10 @@ bool TheGame::render()
 
 void TheGame::buildLevelI()
 {
+    Platform* tempPlat = new Platform("poop.png");
+
     Level* levelI = new Level("images/Final/level_1.png", screenHeight_, screenWidth_, "Level I");
     levels_.push_back(levelI);
+    levels_[0]->addPlat(tempPlat);
 
 }
