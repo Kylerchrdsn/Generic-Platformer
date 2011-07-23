@@ -41,6 +41,11 @@ void Level::addPlat(Platform* plat)
     path_.push_back(plat);
 }
 
+void Level::addToon(Toon* tempToon)
+{
+    toons_.push_back(tempToon);
+}
+
 //**********************************************************
 void Level::setLevelHeight(int height)
 {
@@ -59,6 +64,16 @@ void Level::setXPos(const int x)
     BG->setXPos(x);
 }
 
+void Level::setPlatX(int plat, int x)
+{
+    path_[plat]->setXPos(x);
+}
+
+void Level::setPlatY(int plat, int y)
+{
+    path_[plat]->setYPos(y);
+}
+
 //**********************************************************
 void Level::setYPos(const int y)
 {
@@ -68,4 +83,13 @@ void Level::setYPos(const int y)
 void Level::show(SDL_Surface* screen)
 {
     BG->show(screen);
+
+    std::vector<Platform*>::iterator iter;
+    iter = path_.begin();
+
+    while(iter != path_.end())
+    {
+        (*iter)->show(screen);
+        iter++;
+    }
 }

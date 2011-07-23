@@ -24,10 +24,13 @@ class Level
 
         void addEnemy(int type, int number);
         void addPlat(Platform* plat);
+        void addToon(Toon* tempToon);
         void setLevelHeight(int height);
         void setLevelWidth(int width);
         void setXPos(const int x);
         void setYPos(const int y);
+        void setPlatX(int plat, int x);
+        void setPlatY(int plat, int y);
         void show(SDL_Surface* screen);
 
     private:

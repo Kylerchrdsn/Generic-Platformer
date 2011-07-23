@@ -1,5 +1,6 @@
 #include "TheGame.h"
 #include "Timer.h"
+#include "Protag.h"
 
 TheGame::TheGame() : screen(0)
 {
@@ -122,11 +123,22 @@ bool TheGame::doLevelI()
         }
         else if(gEvent.type == SDL_KEYDOWN)
         {
-            setGameState(EXIT);
+            if(gEvent.type == SDLK_RETURN)
+            {
+                setGameState(EXIT);
+            }
+            else if(gEvent.type == SDLK_LEFT)
+            {
+
+            }
+            else if(gEvent.type == SDLK_RIGHT)
+            {
+
+            }
         }
     }
 
-    levels_[0]->setXPos(levels_[0]->getXPos() - 2);
+    //levels_[0]->setXPos(levels_[0]->getXPos() - 2);
 
     if(levels_[0]->getXPos() <= -(levels_[0]->getLevelWidth() - screenWidth_))
     {
@@ -171,10 +183,16 @@ bool TheGame::render()
 
 void TheGame::buildLevelI()
 {
-    Platform* tempPlat = new Platform("poop.png");
+    Platform* tempPlat = new Platform("images/Final/B-3.png");
+    Toon* tempToon = new Protag();
 
     Level* levelI = new Level("images/Final/level_1.png", screenHeight_, screenWidth_, "Level I");
     levels_.push_back(levelI);
+
     levels_[0]->addPlat(tempPlat);
+    levels_[0]->addToon(tempToon);
+
+    levels_[0]->setPlatX(0, 0);
+    levels_[0]->setPlatY(0, 300);
 
 }
