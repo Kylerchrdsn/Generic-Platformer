@@ -1,9 +1,7 @@
 #include "Platform.h"
 
 Platform::Platform() : image_(0)
-{
-    //ctor
-}
+{}
 
 //******************************************
 Platform::Platform(const std::string& filename) : image_(0)
