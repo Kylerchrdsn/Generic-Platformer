@@ -10,7 +10,7 @@ class Toon
         virtual ~Toon();
 
     private:
-        Sprite* toonModel;
+        Sprite* _toonModel;
         virtual void move() = 0;
 };
 

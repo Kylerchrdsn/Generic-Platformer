@@ -9,10 +9,8 @@ class Protag : public Toon
     public:
         Protag();
         virtual ~Protag();
-
         virtual void move();
 
-    private:
 };
 
 #endif // PROTAG_H

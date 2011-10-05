@@ -10,10 +10,6 @@ class Enemy : public Toon
         Enemy();
         virtual ~Enemy();
         virtual void move();
-
-    private:
-        Sprite* enemyModel_;
-
 };
 
 #endif // ENEMY_H

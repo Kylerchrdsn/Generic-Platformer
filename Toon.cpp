@@ -1,11 +1,10 @@
 #include "Toon.h"
 
-Toon::Toon() : toonModel(0)
-{
-}
+Toon::Toon() : _toonModel(0)
+{}
 
-//*****************************************
+//*************************************************************************************
 Toon::~Toon()
 {
-    delete toonModel;
+    delete _toonModel;
 }
