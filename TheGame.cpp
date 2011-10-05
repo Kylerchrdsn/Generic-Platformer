@@ -50,11 +50,9 @@ void TheGame::setGameState(int gameState)
 bool TheGame::doIntro()
 {
     Timer fps;
-
     int frame = 200;
     bool doingIntro = 1,
-        intro = 1;
-
+         intro = 1;
     fps.start();
 
     while(intro)
@@ -114,9 +112,7 @@ void TheGame::doSelectSave()
 bool TheGame::doLevelI()
 {
     Timer fps;
-
     int frame = 100;
-
     fps.start();
 
     while(SDL_PollEvent(&gEvent))
