@@ -1,9 +1,11 @@
+// Includes
+//*************************************************************************************
 #include "TheGame.h"
 #include "Timer.h"
 #include "Protag.h"
 
-TheGame::TheGame() : screen(0)
-{
+//*************************************************************************************
+TheGame::TheGame() : screen(0){
     setGameState(0);
     screenHeight_ = 500;
     screenWidth_ = 800;
@@ -11,14 +13,12 @@ TheGame::TheGame() : screen(0)
 }
 
 //*************************************************************************************
-TheGame::~TheGame()
-{
+TheGame::~TheGame(){
     delete introBG;
 }
 
 //*************************************************************************************
-bool TheGame::initialize()
-{
+bool TheGame::initialize(){
     SDL_Init(SDL_INIT_EVERYTHING);
 
     screen = SDL_SetVideoMode(screenWidth_, screenHeight_, 32, SDL_SWSURFACE);
@@ -29,8 +29,7 @@ bool TheGame::initialize()
     introBG->setYPos(-(introBG->h() - screenHeight_));
     introBG->setXPos(5);
 
-    if(screen == 0)
-    {
+    if(screen == 0){
         return 0;
     }
 
@@ -40,8 +39,7 @@ bool TheGame::initialize()
 //*************************************************************************************
 void TheGame::setGameState(int gameState)
 {
-    if(gameState_ > -1)
-    {
+    if(gameState_ > -1){
         gameState_ = gameState;
     }
 }
@@ -55,19 +53,13 @@ bool TheGame::doIntro()
          intro = 1;
     fps.start();
 
-    while(intro)
-    {
-        while(SDL_PollEvent(&gEvent))
-        {
-            if(gEvent.type == SDL_QUIT)
-            {
+    while(intro){
+        while(SDL_PollEvent(&gEvent)){
+            if(gEvent.type == SDL_QUIT){
                 intro = 0;
-                setGameState(EXIT);
-            }
-            else if(!doingIntro)
-            {
-                if(gEvent.type == SDL_KEYDOWN)
-                {
+                setGameState(EXIT); }
+						else if(!doingIntro){
+                if(gEvent.type == SDL_KEYDOWN){
                     intro = 0;
                     buildLevelI();
                     setGameState(LEVEL_I);
@@ -75,26 +67,22 @@ bool TheGame::doIntro()
             }
         }
 
-        if(doingIntro)
-        {
+        if(doingIntro){
             introBG->setYPos(introBG->getYPos() + 2);
         }
 
-        if(introBG->getYPos() >= 0)
-        {
+        if(introBG->getYPos() >= 0){
             introBG->setYPos(0);
             doingIntro = 0;
         }
 
-        if( fps.get_ticks() < 1000 / frame )
-        {
+        if( fps.get_ticks() < 1000 / frame ){
             SDL_Delay( ( 1000 / frame ) - fps.get_ticks() );
         }
 
         introBG->show(screen);
 
-        if(!render())
-        {
+        if(!render()){
             return 0;
         }
     }
@@ -103,36 +91,26 @@ bool TheGame::doIntro()
 }
 
 //*************************************************************************************
-void TheGame::doSelectSave()
-{
+void TheGame::doSelectSave(){
 
 }
 
 //*************************************************************************************
-bool TheGame::doLevelI()
-{
+bool TheGame::doLevelI(){
     Timer fps;
     int frame = 100;
     fps.start();
 
-    while(SDL_PollEvent(&gEvent))
-    {
-        if(gEvent.type == SDL_QUIT)
-        {
-            setGameState(EXIT);
-        }
-        else if(gEvent.type == SDL_KEYDOWN)
-        {
-            if(gEvent.type == SDLK_RETURN)
-            {
-                setGameState(EXIT);
-            }
-            else if(gEvent.type == SDLK_LEFT)
-            {
+    while(SDL_PollEvent(&gEvent)){
+        if(gEvent.type == SDL_QUIT){
+            setGameState(EXIT); }
+        else if(gEvent.type == SDL_KEYDOWN){
+            if(gEvent.type == SDLK_RETURN){
+                setGameState(EXIT); }
+            else if(gEvent.type == SDLK_LEFT){
 
             }
-            else if(gEvent.type == SDLK_RIGHT)
-            {
+            else if(gEvent.type == SDLK_RIGHT){
 
             }
         }
@@ -140,20 +118,17 @@ bool TheGame::doLevelI()
 
     //levels_[0]->setXPos(levels_[0]->getXPos() - 2);
 
-    if(levels_[0]->getXPos() <= -(levels_[0]->getLevelWidth() - screenWidth_))
-    {
+    if(levels_[0]->getXPos() <= -(levels_[0]->getLevelWidth() - screenWidth_)){
         levels_[0]->setXPos(0);
     }
 
-    if( fps.get_ticks() < 1000 / frame )
-    {
+    if( fps.get_ticks() < 1000 / frame ){
         SDL_Delay( ( 1000 / frame ) - fps.get_ticks() );
     }
 
     levels_[0]->show(screen);
 
-    if(!render())
-    {
+    if(!render()){
         return 0;
     }
 
@@ -161,22 +136,18 @@ bool TheGame::doLevelI()
 }
 
 //*************************************************************************************
-void TheGame::doMenu()
-{
+void TheGame::doMenu(){
 
 }
 
 //*************************************************************************************
-void TheGame::doExit()
-{
+void TheGame::doExit(){
     SDL_Quit();
 }
 
 //*************************************************************************************
-bool TheGame::render()
-{
-    if(SDL_Flip(screen) == -1)
-    {
+bool TheGame::render(){
+    if(SDL_Flip(screen) == -1){
         return 0;
     }
 
@@ -184,8 +155,7 @@ bool TheGame::render()
 }
 
 //*************************************************************************************
-void TheGame::buildLevelI()
-{
+void TheGame::buildLevelI(){
     Platform* tempPlat = new Platform("images/Final/B-3.png");
     Toon* tempToon = new Protag();
 
@@ -197,5 +167,5 @@ void TheGame::buildLevelI()
 
     levels_[0]->setPlatX(0, 0);
     levels_[0]->setPlatY(0, 300);
-
 }
+

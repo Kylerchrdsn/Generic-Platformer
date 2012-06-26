@@ -9,8 +9,7 @@
 #include "Sprite.h"
 
 
-class TheGame
-{
+class TheGame{
     public:
         TheGame();
         ~TheGame();
@@ -47,9 +46,9 @@ class TheGame
 };
 
 //*****************************************************
-int TheGame::getGameState()
-{
+int TheGame::getGameState(){
     return gameState_;
 }
 
 #endif // THEGAME_H
+

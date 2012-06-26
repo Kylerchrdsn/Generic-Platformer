@@ -1,7 +1,10 @@
+// Includes
+//******************************************************************
 #include "SDL.h"
-#include "TheGame.h"
+#include "controller/TheGame.h"
 
-
+// Main: This should need no explanation
+//******************************************************************
 int main(int argc, char* args[]){
     TheGame controller;
     enum gameStates {INTRO, SELECT_SAVE_FILE, LEVEL_I, MENU, EXIT};
@@ -38,3 +41,4 @@ int main(int argc, char* args[]){
     controller.doExit();
     return 0;
 }
+
